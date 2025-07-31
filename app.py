@@ -80,8 +80,8 @@ def load_sample_data():
                        4.0, 5.0, 4.0, 2.0, 1.0, 1.0, 3.0, 4.0, 3.0, 2.0, 1.0, 0.5, 0.5]
         hour_weights = np.array(hour_weights) / np.sum(hour_weights)  # Normalize
         hour = np.random.choice(range(24), p=hour_weights)
-        timestamp = start_date + timedelta(days=day_offset, hours=hour, 
-                                         minutes=np.random.randint(0, 60))
+        timestamp = start_date + timedelta(days=int(day_offset), hours=int(hour), 
+                                         minutes=int(np.random.randint(0, 60)))
         timestamps.append(timestamp)
     
     # Generate transaction amounts (Indonesian Rupiah)
@@ -99,8 +99,8 @@ def load_sample_data():
         'city': np.random.choice(cities, n_transactions),
         'customer_age': np.random.normal(30, 10, n_transactions).astype(int),
         'is_weekend': [ts.weekday() >= 5 for ts in timestamps],
-        'hour': [ts.hour for ts in timestamps],
-        'day_of_week': [ts.weekday() for ts in timestamps]
+        'hour': [int(ts.hour) for ts in timestamps],
+        'day_of_week': [int(ts.weekday()) for ts in timestamps]
     }
     
     df = pd.DataFrame(data)
