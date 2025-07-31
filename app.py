@@ -443,8 +443,8 @@ def system_settings():
         
         pos_systems = st.multiselect(
             "Connected POS Systems",
-            ["Moka POS", "Pawoon", "iReap", "Majoo", "Others"],
-            default=["Moka POS", "Pawoon"]
+            ["ESB POS", "Pawoon", "iReap", "Majoo", "Others"],
+            default=["ESB POS", "Pawoon"]
         )
         
         webhook_url = st.text_input("Webhook URL for alerts")
