@@ -78,7 +78,8 @@ def load_sample_data():
         # Indonesian FnB peak hours: 7-9, 11-14, 17-21
         hour_weights = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 2.0, 3.0, 1.0, 1.0, 
                        4.0, 5.0, 4.0, 2.0, 1.0, 1.0, 3.0, 4.0, 3.0, 2.0, 1.0, 0.5, 0.5]
-        hour = np.random.choices(range(24), weights=hour_weights)[0]
+        hour_weights = np.array(hour_weights) / np.sum(hour_weights)  # Normalize
+        hour = np.random.choice(range(24), p=hour_weights)
         timestamp = start_date + timedelta(days=day_offset, hours=hour, 
                                          minutes=np.random.randint(0, 60))
         timestamps.append(timestamp)
